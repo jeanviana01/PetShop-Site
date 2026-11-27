@@ -89,7 +89,26 @@
   async function loadReviews() {
     if (!grid) return;
     if (!configured) {
-      empty("Em breve, novos feedbacks por aqui!");
+      // Alternativa sem banco de dados: avaliações aprovadas e versionadas no GitHub.
+      try {
+        const response = await fetch("assets/feedbacks.json", {
+          headers: { Accept: "application/json" },
+          cache: "no-store"
+        });
+        if (!response.ok) throw new Error("Lista de avaliações indisponível");
+        const data = await response.json();
+        const photos = Array.isArray(data.items) ? data.items.slice(0, 30) : [];
+        grid.replaceChildren();
+        photos.forEach((src, index) => {
+          if (typeof src !== "string") return;
+          // Só arquivos de imagem no diretório de avaliações; jamais URLs externas.
+          if (!/^assets\/feedbacks\/[a-z0-9][a-z0-9_-]{0,79}\.(?:webp|png|jpe?g)$/i.test(src)) return;
+          addImage(src, index);
+        });
+        if (!grid.children.length) empty("Em breve, novos feedbacks por aqui!");
+      } catch (_) {
+        empty("Não foi possível carregar os feedbacks agora.");
+      }
       return;
     }
     try {
