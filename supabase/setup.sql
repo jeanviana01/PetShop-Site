@@ -16,7 +16,7 @@ for select to authenticated using (user_id = (select auth.uid()));
 
 create table if not exists public.petshop_feedback (
   id uuid primary key default gen_random_uuid(),
-  image_path text not null unique check (image_path ~ '^feedbacks/[a-f0-9-]{36}\\.webp$'),
+  image_path text not null unique check (image_path ~ '^feedbacks/[a-f0-9-]{36}\.webp$'),
   created_at timestamptz not null default now()
 );
 alter table public.petshop_feedback enable row level security;
@@ -57,7 +57,7 @@ drop policy if exists petshop_storage_admin_insert on storage.objects;
 create policy petshop_storage_admin_insert on storage.objects
 for insert to authenticated with check (
   bucket_id = 'petshop-feedback' and
-  name ~ '^feedbacks/[a-f0-9-]{36}\\.webp$' and
+  name ~ '^feedbacks/[a-f0-9-]{36}\.webp$' and
   exists (select 1 from public.petshop_admins a where a.user_id = (select auth.uid()))
 );
 
