@@ -4,6 +4,20 @@ Site do pet shop **4 Patas — Banho e Tosa**.
 
 **🌐 Acesse o site:** https://jeanviana01.github.io/PetShop-Site/
 
+## Alternativa já disponível — sem Supabase
+
+O site público agora aceita avaliações publicadas **diretamente no GitHub**, sem banco de dados, cadastro extra ou serviço de terceiros. Para publicar:
+
+1. Receba o print do cliente e confirme que ele autorizou a divulgação.
+2. Oculte dados pessoais antes de enviar ao repositório.
+3. Suba a imagem para `assets/feedbacks/` no GitHub (pela conta com permissão de escrita).
+4. Acrescente o caminho ao array `items` de `assets/feedbacks.json`, por exemplo `"assets/feedbacks/avaliacao-01.webp"`.
+5. O GitHub Pages publicará a alteração; a avaliação aparecerá para todos os visitantes quando a nova versão entrar no ar.
+
+**Esta alternativa usa o próprio GitHub como painel de publicação, não permite upload por visitantes e não requer Supabase.** Os prints ainda precisam ser fornecidos; não foram inventadas avaliações.
+
+O Supabase permanece opcional para o futuro, caso seja necessário um painel de uploads com login diretamente no site.
+
 ## Melhorias implementadas
 
 - Layout original e fotos preservados.
