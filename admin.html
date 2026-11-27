@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' https://*.supabase.co data:; connect-src 'self' https://*.supabase.co; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <title>Administração | 4 Patas</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <style>
+    *{box-sizing:border-box}body{font-family:Arial,sans-serif;margin:0;background:#f3f8f4;color:#203e36}
+    header{background:#245a49;padding:24px 7%;color:white}main{max-width:820px;margin:30px auto;padding:0 20px 50px}
+    a{color:inherit}header a{color:white}section{background:white;padding:28px;border-radius:20px;box-shadow:0 8px 24px #153d2811;margin-top:20px}
+    label{display:block;margin:18px 0 8px;font-weight:700}input{width:100%;padding:13px;border:1px solid #8daea0;border-radius:8px;font:inherit}
+    button{border:0;background:#f59b52;color:#203e36;border-radius:20px;padding:13px 20px;cursor:pointer;font-weight:800;margin:14px 8px 8px 0}
+    button:focus-visible,a:focus-visible{outline:3px solid #3b8168;outline-offset:3px}button:disabled{opacity:.5;cursor:wait}
+    [hidden]{display:none!important}#status{padding:14px;background:#e6f4eb;border-radius:8px;line-height:1.5}#status[data-error="true"]{background:#fff0e5;color:#9a3b12}
+    #feedbackList{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:15px}
+    .feedback-admin-card{border:1px solid #d5e7df;padding:12px;border-radius:14px;display:grid;gap:8px;align-content:start}
+    .feedback-admin-card img{width:100%;height:220px;object-fit:contain}.feedback-admin-card button{background:#ffddd6}
+    small{color:#52675e;line-height:1.6;display:block}
+    @media(max-width:600px){header{padding:20px}main{margin:15px auto}section{padding:20px}}
+  </style>
+  <script src="assets/config.js" defer></script>
+  <script src="assets/admin.js" defer></script>
+</head>
+<body>
+  <header><a href="index.html">← Voltar ao site</a><h1>4 Patas · Avaliações</h1></header>
+  <main>
+    <p id="status" role="status" aria-live="polite">Aguardando acesso…</p>
+    <section id="loginPanel">
+      <h2>Área restrita</h2>
+      <p>Entre com uma conta cadastrada e autorizada no Supabase.</p>
+      <form id="loginForm">
+        <label for="email">E-mail do administrador</label><input type="email" id="email" autocomplete="username" required>
+        <label for="password">Senha</label><input type="password" id="password" autocomplete="current-password" required>
+        <button type="submit">Entrar com segurança</button>
+      </form>
+    </section>
+    <section id="editorPanel" hidden>
+      <h2>Publicar prints autorizados</h2>
+      <p>Antes de publicar, oculte nomes, números de telefone, fotos de perfil e outros dados pessoais sem autorização.</p>
+      <form id="uploadForm">
+        <label for="feedbackUpload">Imagens (até cinco por envio)</label>
+        <input id="feedbackUpload" type="file" accept="image/jpeg,image/png,image/webp" multiple required>
+        <small>JPG, PNG ou WebP; máximo de 8 MB por arquivo. Convertidas para WebP sem metadados antes do envio.</small>
+        <button type="submit" id="uploadButton">Publicar avaliações</button>
+      </form>
+      <h2>Avaliações publicadas</h2>
+      <div id="feedbackList"></div>
+      <button type="button" id="logout">Sair do painel</button>
+    </section>
+  </main>
+</body>
+</html>
